@@ -26,13 +26,13 @@ export const COURSES_DATA: ICourse[] = [
   },
   {
     id: '3',
-    title: 'Tổng hợp - Chủ đề C: Đạo đức, pháp luật và văn hóa trong môi...',
+    title: 'Tổng hợp - Chủ đề C: Đạo đức, pháp luật và văn hóa trong môi trường',
     grade: 'Lớp 6',
     image: lop6_2,
   },
   {
     id: '4',
-    title: 'Giáo án - Sự cần thiết của sắp xếp',
+    title: 'Giáo án - Sự cần thiết của sắp xếp dữ liệu',
     grade: 'Lớp 3',
     image: lop3,
   },

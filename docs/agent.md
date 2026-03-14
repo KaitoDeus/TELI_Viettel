@@ -79,3 +79,30 @@ src/
 - [x] **Sửa lỗi hiển thị**: Fix icon Cài đặt bị mất góc, loại bỏ highlight mặc định mục lịch sử khi ở trang chủ.
 - [x] **Responsive ChatPage**: Chuyển bố cục sang dạng dọc trên Mobile (Chat trên - Editor dưới), khắc phục khoảng trắng lỗi khi chưa mở giáo án.
 - [x] **Tinh chỉnh UI Chat**: Xoá icon đầu các nút hành động (Button actions) để giao diện thoáng hơn.
+
+---
+
+## Gợi ý hướng phát triển tiếp theo (Next Steps)
+
+Để chuyển đổi từ bản Prototype Frontend sang một ứng dụng Production hoàn chỉnh, tôi gợi ý các bước sau:
+
+### 1. Kiến trúc Backend & Dữ liệu
+- [ ] **Xây dựng RESTful API**: Chuyển từ Mock Data sang API thực tế (Node.js/Express hoặc NestJS).
+- [ ] **Cơ sở dữ liệu**: Thiết lập PostgreSQL hoặc MongoDB để lưu trữ thông tin kho học liệu và lịch sử trò chuyện của thầy/cô.
+- [ ] **Authentication**: Triển khai đăng nhập (JWT/OAuth) để quản lý tài khoản cá nhân cho từng giáo viên.
+
+### 2. Tích hợp AI thực tế
+- [ ] **Kết nối LLM**: Thay thế `ChatService` bằng kết nối đến Google Gemini API hoặc OpenAI API thông qua Backend.
+- [ ] **Prompt Engineering**: Tối ưu hóa các mẫu câu lệnh (Prompt) để AI soạn giáo án bám sát chuẩn chương trình Tin học của Bộ Giáo dục.
+
+### 3. Nâng cấp tính năng biên tập
+- [ ] **Rich Text Editor**: Tích hợp thư viện biên tập văn bản (như TipTap hoặc Quill) vào `EditorPanel` để thầy/cô có thể chỉnh sửa trực tiếp trên trình duyệt.
+- [ ] **Export nâng cao**: Triển khai tính năng xuất file `.docx` và `.pdf` phía Server-side để đảm bảo định dạng văn bản chuẩn xác nhất.
+
+### 4. Quản lý trạng thái & Hiệu năng
+- [ ] **State Management**: Sử dụng **Zustand** hoặc **Redux Toolkit** để quản lý các trạng thái phức tạp khi ứng dụng mở rộng.
+- [ ] **Data Fetching**: Sử dụng **TanStack Query (React Query)** để quản lý việc gọi API, cache dữ liệu và xử lý loading/error chuyên nghiệp.
+
+### 5. Kiểm thử & Triển khai
+- [ ] **Unit Testing**: Viết test cho các Service logic bằng Vitest.
+- [ ] **CI/CD**: Thiết lập GitHub Actions để tự động kiểm tra và triển khai ứng dụng lên Vercel/Netlify hoặc Server riêng.
