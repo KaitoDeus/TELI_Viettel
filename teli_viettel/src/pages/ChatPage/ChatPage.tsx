@@ -40,14 +40,12 @@ export default function ChatPage() {
         <div className="chat-area">
           <ChatMessage 
             type="user"
-            content={
-            `Tôi đang dạy Tin học lớp 4. Dựa vào giáo trình Tin học của Bộ giáo dục & đào tạo, hãy giúp tôi soạn nội dung bài giảng về chuột máy tính cho học sinh.
-            Bài giảng cần:
-            • Giải thích đơn giản, dễ hiểu cho học sinh tiểu học
-            • Giới thiệu các bộ phận chính của chuột máy tính
-            • Các thao tác cơ bản như: nhấp chuột, nhấp đúp, kéo thả
-            • Gợi ý một hoạt động thực hành ngắn cho học sinh trong lớp.`
-            }
+            content={`Tôi đang dạy Tin học lớp 4. Dựa vào giáo trình Tin học của Bộ giáo dục & đào tạo, hãy giúp tôi soạn nội dung bài giảng về chuột máy tính cho học sinh.
+Bài giảng cần:
+• Giải thích đơn giản, dễ hiểu cho học sinh tiểu học
+• Giới thiệu các bộ phận chính của chuột máy tính
+• Các thao tác cơ bản như: nhấp chuột, nhấp đúp, kéo thả
+• Gợi ý một hoạt động thực hành ngắn cho học sinh trong lớp.`}
             isCollapsed={isCollapsed}
             onToggleCollapse={() => setIsCollapsed(!isCollapsed)}
           />
@@ -56,6 +54,7 @@ export default function ChatPage() {
             type="ai"
             aiData={aiResponse}
             onActionClick={handleActionClick}
+            activeActionIdx={showEditor ? 0 : -1}
           />
         </div>
 

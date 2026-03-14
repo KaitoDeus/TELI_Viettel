@@ -17,6 +17,7 @@ interface ChatMessageProps {
   isCollapsed?: boolean;
   onToggleCollapse?: () => void;
   onActionClick?: (actionIndex: number) => void;
+  activeActionIdx?: number;
 }
 
 function renderBoldText(text: string) {
@@ -32,14 +33,15 @@ export default function ChatMessage({
   aiData, 
   isCollapsed, 
   onToggleCollapse,
-  onActionClick 
+  onActionClick,
+  activeActionIdx
 }: ChatMessageProps) {
   if (type === 'user') {
     return (
       <div className="chat-message user-message">
-        <div className="message-bubble user-bubble">
-          <button className="collapse-btn" onClick={onToggleCollapse}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: isCollapsed ? 'rotate(0deg)' : 'rotate(180deg)', transition: 'transform 0.2s' }}>
+        <div className={`message-bubble user-bubble ${isCollapsed ? 'collapsed' : ''}`}>
+          <button className="collapse-btn" onClick={onToggleCollapse} aria-label={isCollapsed ? "Mở rộng" : "Thu gọn"}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transform: isCollapsed ? 'rotate(0deg)' : 'rotate(180deg)', transition: 'transform 0.2s' }}>
               <polyline points="6 9 12 15 18 9" />
             </svg>
           </button>
@@ -85,7 +87,7 @@ export default function ChatMessage({
               {aiData.actions.map((action, idx) => (
                 <button 
                   key={idx} 
-                  className={`ai-action-btn ${idx === 0 ? 'primary' : 'secondary'}`}
+                  className={`ai-action-btn ${activeActionIdx === idx ? 'primary' : 'secondary'}`}
                   onClick={() => onActionClick?.(idx)}
                 >
                   {action}

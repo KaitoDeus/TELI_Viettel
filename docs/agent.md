@@ -79,6 +79,8 @@ src/
 - [x] **Sửa lỗi hiển thị**: Fix icon Cài đặt bị mất góc, loại bỏ highlight mặc định mục lịch sử khi ở trang chủ.
 - [x] **Responsive ChatPage**: Chuyển bố cục sang dạng dọc trên Mobile (Chat trên - Editor dưới), khắc phục khoảng trắng lỗi khi chưa mở giáo án.
 - [x] **Tinh chỉnh UI Chat**: Xoá icon đầu các nút hành động (Button actions) để giao diện thoáng hơn.
+- [x] **Căn lề nội dung Chat**: Loại bỏ khoảng trắng đầu dòng trong tin nhắn của người dùng để nội dung bám sát lề trái.
+- [x] **Sửa nút Toggle Chat**: Điều chỉnh vị trí và thêm padding để nút không chồng lên văn bản, đồng thời làm trong suốt background nút để khớp hoàn toàn với bong bóng chat.
 
 ---
 
