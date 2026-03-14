@@ -1,0 +1,137 @@
+.chat-message {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.user-message {
+  justify-content: flex-end;
+}
+
+.message-bubble {
+  max-width: 85%;
+  padding: 16px 20px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.user-bubble {
+  background-color: #F3F4F6; /* Light gray background for user messages */
+  color: #374151;
+  border-radius: 12px;
+  border-top-right-radius: 4px;
+  padding: 12px 18px;
+}
+
+.ai-message {
+  gap: 12px;
+}
+
+.ai-avatar {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.ai-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.ai-bubble {
+  background-color: transparent;
+  color: #172B4D;
+  border-top-left-radius: 4px;
+}
+
+.ai-intro {
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.ai-section {
+  margin-bottom: 24px;
+}
+
+.ai-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--color-primary);
+}
+
+.ai-section-text {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.ai-section-bullets {
+  padding-left: 20px;
+  margin-bottom: 12px;
+}
+
+.ai-section-bullets li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.ai-section-footer {
+  font-style: italic;
+  font-size: 13px;
+  color: #555;
+  margin-top: 10px;
+}
+
+.ai-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.ai-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.ai-action-btn.primary {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+.ai-action-btn.secondary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.ai-action-btn:hover {
+  opacity: 0.9;
+}
+
+.collapse-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px;
+  color: #888;
+}
+
+.message-content {
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.message-content p {
+  margin: 0;
+}
+
+.message-content ul {
+  padding-left: 20px;
+  margin-top: 8px;
+}

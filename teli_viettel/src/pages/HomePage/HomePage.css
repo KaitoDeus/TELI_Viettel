@@ -1,0 +1,204 @@
+.home-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-white);
+  position: relative;
+  min-height: 100vh;
+}
+
+/* ===== Top Bar ===== */
+.home-top-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 28px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.user-avatar:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Center Content ===== */
+.home-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px 60px;
+  gap: 32px;
+}
+
+/* ===== Search Form ===== */
+.home-search-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 680px; /* Increased from 580px */
+  background: var(--color-bg);
+  border-radius: var(--radius-pill);
+  padding: 8px 8px 8px 28px; /* Slightly more padding */
+  border: 1px solid var(--color-border);
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.home-search-form:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(234, 42, 50, 0.08);
+}
+
+.home-search-input {
+  flex: 1;
+  background: transparent;
+  font-size: 15px;
+  color: var(--color-text-primary);
+  padding: 10px 0;
+}
+
+.home-search-input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.home-search-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--color-secondary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.home-search-btn:hover {
+  background: #0f1f3a;
+  transform: scale(1.05);
+}
+
+/* ===== Mascot Section ===== */
+.home-mascot-section {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.home-mascot-wrapper {
+  flex-shrink: 0;
+}
+
+.home-mascot-img {
+  width: 240px; /* Increased from 180px */
+  height: auto;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.1));
+  animation: mascotFloat 3s ease-in-out infinite;
+}
+
+@keyframes mascotFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.home-greeting-bubble {
+  background: var(--color-ai-bubble);
+  padding: 20px 32px; /* Increased padding */
+  border-radius: var(--radius-lg);
+  border-bottom-left-radius: 4px;
+  max-width: 420px; /* Increased from 340px */
+  font-size: 17px; /* Increased from 15px */
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  position: relative;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== Suggestions ===== */
+.home-suggestions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 700px;
+}
+
+.home-suggestion-chip {
+  background: var(--color-ai-bubble);
+  border: 1px solid rgba(234, 42, 50, 0.08);
+  border-radius: var(--radius-pill);
+  padding: 10px 20px;
+  font-size: 13px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.home-suggestion-chip:hover {
+  background: rgba(234, 42, 50, 0.1);
+  border-color: rgba(234, 42, 50, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(234, 42, 50, 0.1);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 767px) {
+  .home-content {
+    padding: 60px 20px 40px; /* Leave space for mobile toggle */
+    gap: 24px;
+    justify-content: flex-start;
+  }
+
+  .home-mascot-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .home-mascot-img {
+    width: 140px;
+  }
+
+  .home-greeting-bubble {
+    font-size: 14px;
+    padding: 12px 20px;
+    max-width: 100%;
+    border-radius: var(--radius-md);
+  }
+
+  .home-search-form {
+    padding: 4px 4px 4px 16px;
+  }
+
+  .home-search-input {
+    font-size: 14px;
+  }
+
+  .home-suggestions {
+    gap: 8px;
+  }
+
+  .home-suggestion-chip {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-mascot-img {
+    width: 120px;
+  }
+}

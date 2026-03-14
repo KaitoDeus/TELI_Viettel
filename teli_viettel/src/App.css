@@ -1,0 +1,72 @@
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0; /* Fix flex child overflow */
+  background: var(--color-bg);
+}
+
+/* ===== Mobile & Tablet Viewport Fixes ===== */
+
+/* Hamburger Button */
+.mobile-toggle {
+  display: none;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 2000; /* Higher than sidebar */
+  width: 40px;
+  height: 40px;
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sidebar-open .mobile-toggle {
+  background: var(--color-sidebar-hover);
+  color: white;
+  border-color: transparent;
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 998;
+}
+
+/* Mobile Breakpoint (< 768px) */
+@media (max-width: 767px) {
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .sidebar-overlay {
+    display: block;
+  }
+
+  .main-content {
+    width: 100%;
+  }
+}
+
+/* Tablet Breakpoint (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* We could also collapse sidebar to icons here, but for now let's just show toggle if needed */
+  /* Or just keep the sidebar but make it slightly narrower in sidebar.css */
+}

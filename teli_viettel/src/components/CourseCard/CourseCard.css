@@ -1,0 +1,80 @@
+.library-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.library-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 6px;
+  margin: 2px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.card-content {
+  padding: 12px 12px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-title {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #333;
+  font-weight: 500;
+  height: 40px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+}
+
+.card-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background: #E52321;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.card-view-btn {
+  margin: 8px 12px 12px;
+  padding: 8px 0;
+  background: #182391; /* Brand blue */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.library-card:hover .card-view-btn {
+  opacity: 1;
+  transform: translateY(0);
+}

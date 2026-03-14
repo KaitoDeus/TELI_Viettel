@@ -1,0 +1,18 @@
+.home-suggestion-chip {
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: white;
+  border: 1px solid var(--color-border);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.home-suggestion-chip:hover {
+  background: var(--color-bg);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
