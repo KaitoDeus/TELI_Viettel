@@ -81,6 +81,11 @@ src/
 - [x] **Tinh chỉnh UI Chat**: Xoá icon đầu các nút hành động (Button actions) để giao diện thoáng hơn.
 - [x] **Căn lề nội dung Chat**: Loại bỏ khoảng trắng đầu dòng trong tin nhắn của người dùng để nội dung bám sát lề trái.
 - [x] **Sửa nút Toggle Chat**: Điều chỉnh vị trí và thêm padding để nút không chồng lên văn bản, đồng thời làm trong suốt background nút để khớp hoàn toàn với bong bóng chat.
+- [x] **Cấu trúc dữ liệu lịch sử động**: Cập nhật hệ thống dữ liệu để mỗi mục lịch sử lưu trữ riêng biệt tin nhắn người dùng, phản hồi AI và nội dung giáo án tương ứng.
+- [x] **Dữ liệu mẫu chuyên sâu**: Soạn thảo nội dung bài giảng chi tiết cho "Paint lớp 4" và "PowerPoint lớp 3" với kịch bản AI dài, chuyên nghiệp và giáo án Word đầy đủ các phần.
+- [x] **Điều hướng & Reset trạng thái**: Triển khai Dynamic Routing (`/chat/:id`) và cơ chế `key` component để tự động đóng giáo án và làm mới tin nhắn khi chuyển đổi mục lịch sử.
+- [x] **Nút đóng tài liệu (X)**: Thêm nút X vào góc bảng soạn thảo (`EditorPanel`) giúp người dùng tắt tài liệu thuận tiện và nhanh chóng.
+- [x] **Tối ưu Responsive toàn diện**: Cải thiện hiển thị Mobile cho thanh nhập liệu, xếp chồng các nút hành động của AI (full-width) và bố cục chia đôi màn hình khi xem giáo án.
 
 ---
 
