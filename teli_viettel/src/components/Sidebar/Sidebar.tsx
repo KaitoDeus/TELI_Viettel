@@ -7,10 +7,11 @@ interface SidebarProps {
   isOpen?: boolean;
 }
 
-export default function Sidebar({ activeChat = 0, isOpen }: SidebarProps) {
+export default function Sidebar({ isOpen }: SidebarProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const isLibrary = location.pathname === '/library';
+  const chatIdFromUrl = location.pathname.startsWith('/chat/') ? parseInt(location.pathname.split('/')[2]) : (location.pathname === '/chat' ? 1 : null);
   const chatHistory = chatService.getChatHistory();
 
   return (
@@ -60,8 +61,8 @@ export default function Sidebar({ activeChat = 0, isOpen }: SidebarProps) {
           {chatHistory.map((item, index) => (
             <li
               key={index}
-              className={`sidebar-history-item ${index === activeChat && location.pathname === '/chat' ? 'active' : ''}`}
-              onClick={() => navigate('/chat')}
+              className={`sidebar-history-item ${item.id === chatIdFromUrl ? 'active' : ''}`}
+              onClick={() => navigate(`/chat/${item.id}`)}
             >
               <span>{item.title}</span>
             </li>

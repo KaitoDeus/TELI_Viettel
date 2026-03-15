@@ -23,4 +23,20 @@ export interface IChatHistoryItem {
   id: number;
   title: string;
   active?: boolean;
+  inputMessage?: string;
+  aiResponse?: IAIResponse;
+  editorContent?: {
+    title: string;
+    sections: Array<{
+      title: string;
+      intro?: string;
+      list?: string[];
+      table?: Array<{
+        leftBold: string;
+        leftList: string[];
+        rightBold?: string;
+        rightList: string[];
+      }>;
+    }>;
+  };
 }

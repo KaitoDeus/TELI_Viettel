@@ -22,9 +22,13 @@ class ChatService {
     return this.history;
   }
 
-  public getAiSuggestion(_query: string): IAIResponse {
+  public getAiSuggestion(): IAIResponse {
     // In a real app, this would be an API call
     return AI_CHAT_RESPONSE;
+  }
+
+  public getChatById(id: number): IChatHistoryItem | undefined {
+    return this.history.find(c => c.id === id);
   }
 
   public addNewChat(title: string): void {

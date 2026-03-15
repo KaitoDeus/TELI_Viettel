@@ -48,12 +48,21 @@ function AppContent() {
       <div className="main-content">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/chat" element={<ChatPage />} />
+          <Route 
+            path="/chat/:id" 
+            element={<ChatPageWithKey />} 
+          />
+          <Route path="/chat" element={<ChatPage key="default" />} />
           <Route path="/library" element={<LibraryPage />} />
         </Routes>
       </div>
     </div>
   );
+}
+
+function ChatPageWithKey() {
+  const location = useLocation();
+  return <ChatPage key={location.pathname} />;
 }
 
 function App() {

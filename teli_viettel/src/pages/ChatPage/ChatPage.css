@@ -67,13 +67,18 @@
 
   .chat-area-container.show-editor {
     flex-direction: column;
-    overflow-y: auto;
+    overflow-y: hidden; /* Main container fixed */
   }
 
   .chat-area-container.show-editor .chat-area {
-    flex: none;
-    height: 50vh;
+    flex: 1; /* Allow chat area to scroll if editor is not too tall */
+    max-height: 45vh; /* Keep chat visible */
     border-bottom: 2px solid var(--color-border);
+  }
+
+  .chat-area-container.show-editor .editor-panel {
+    flex: 1; /* Editor takes the rest */
+    height: 55vh;
   }
 
   .chat-area {

@@ -16,9 +16,24 @@
   padding: 12px 20px;
   border-bottom: 1px solid var(--color-border);
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   gap: 12px;
+}
+
+.close-panel-btn {
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.close-panel-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #E21A22; /* Viettel Red on hover */
 }
 
 .export-btn {

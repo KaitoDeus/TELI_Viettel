@@ -1,13 +1,16 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { chatService } from '../../services/ChatService';
 import ChatMessage from '../../components/ChatMessage/ChatMessage';
 import EditorPanel from '../../components/EditorPanel/EditorPanel';
 import ChatInput from '../../components/ChatInput/ChatInput';
 import './ChatPage.css';
 
-const aiResponse = chatService.getAiSuggestion('');
-
 export default function ChatPage() {
+  const { id } = useParams<{ id: string }>();
+  const chatId = id ? parseInt(id) : 1;
+  const chatData = chatService.getChatById(chatId);
+
   const [message, setMessage] = useState('');
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [showEditor, setShowEditor] = useState(false);
@@ -22,11 +25,15 @@ export default function ChatPage() {
     if (idx === 0) setShowEditor(!showEditor);
   };
 
+  if (!chatData) {
+    return <div className="chat-page">Không tìm thấy cuộc trò chuyện.</div>;
+  }
+
   return (
     <main className="chat-page">
       {/* Header */}
       <header className="chat-header">
-        <h1 className="chat-title">Soạn bài: Chuột máy tính lớp 4</h1>
+        <h1 className="chat-title">{chatData.title}</h1>
         <div className="user-avatar">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -38,28 +45,37 @@ export default function ChatPage() {
       <div className={`chat-area-container ${showEditor ? 'show-editor' : ''}`}>
         {/* Chat Area */}
         <div className="chat-area">
-          <ChatMessage 
-            type="user"
-            content={`Tôi đang dạy Tin học lớp 4. Dựa vào giáo trình Tin học của Bộ giáo dục & đào tạo, hãy giúp tôi soạn nội dung bài giảng về chuột máy tính cho học sinh.
-Bài giảng cần:
-• Giải thích đơn giản, dễ hiểu cho học sinh tiểu học
-• Giới thiệu các bộ phận chính của chuột máy tính
-• Các thao tác cơ bản như: nhấp chuột, nhấp đúp, kéo thả
-• Gợi ý một hoạt động thực hành ngắn cho học sinh trong lớp.`}
-            isCollapsed={isCollapsed}
-            onToggleCollapse={() => setIsCollapsed(!isCollapsed)}
-          />
+          {chatData.inputMessage && (
+            <ChatMessage 
+              type="user"
+              content={chatData.inputMessage}
+              isCollapsed={isCollapsed}
+              onToggleCollapse={() => setIsCollapsed(!isCollapsed)}
+            />
+          )}
 
-          <ChatMessage 
-            type="ai"
-            aiData={aiResponse}
-            onActionClick={handleActionClick}
-            activeActionIdx={showEditor ? 0 : -1}
-          />
+          {chatData.aiResponse && (
+            <ChatMessage 
+              type="ai"
+              aiData={chatData.aiResponse}
+              onActionClick={handleActionClick}
+              activeActionIdx={showEditor ? 0 : -1}
+            />
+          )}
+
+          {!chatData.inputMessage && !chatData.aiResponse && (
+            <div className="chat-empty">Chưa có nội dung cho cuộc trò chuyện này.</div>
+          )}
         </div>
 
         {/* Editor Panel */}
-        {showEditor && <EditorPanel onExport={() => alert('Đang xuất file...')} />}
+        {showEditor && (
+          <EditorPanel 
+            content={chatData.editorContent} 
+            onExport={() => alert('Đang xuất file...')} 
+            onClose={() => setShowEditor(false)}
+          />
+        )}
       </div>
 
       <ChatInput 

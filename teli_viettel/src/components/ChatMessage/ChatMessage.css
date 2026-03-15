@@ -165,3 +165,24 @@
   padding-left: 20px;
   margin-top: 8px;
 }
+@media (max-width: 767px) {
+  .message-bubble {
+    max-width: 90%;
+    padding: 12px 14px;
+  }
+
+  .ai-section-title {
+    font-size: 14px;
+  }
+
+  .ai-actions {
+    gap: 8px;
+  }
+
+  .ai-action-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+    width: 100%; /* Stack buttons on mobile for better touch target */
+    justify-content: center;
+  }
+}
