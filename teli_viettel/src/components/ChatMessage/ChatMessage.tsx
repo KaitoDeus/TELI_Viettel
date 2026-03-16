@@ -15,6 +15,7 @@ interface ChatMessageProps {
     actions: string[];
   };
   isCollapsed?: boolean;
+  isThinking?: boolean;
   onToggleCollapse?: () => void;
   onActionClick?: (actionIndex: number) => void;
   activeActionIdx?: number;
@@ -32,6 +33,7 @@ export default function ChatMessage({
   content, 
   aiData, 
   isCollapsed, 
+  isThinking,
   onToggleCollapse,
   onActionClick,
   activeActionIdx
@@ -61,7 +63,16 @@ export default function ChatMessage({
         <img src={mascotAvatar} alt="TELI" />
       </div>
       <div className="message-bubble ai-bubble">
-        {aiData && (
+        {isThinking && (
+          <div className="loading-bubble-inline">
+            <span className="dot"></span>
+            <span className="dot"></span>
+            <span className="dot"></span>
+            <span>Đang suy nghĩ...</span>
+          </div>
+        )}
+
+        {aiData && !isThinking && (
           <>
             <p className="ai-intro">{renderBoldText(aiData.intro)}</p>
             {aiData.sections.map((section, idx) => (

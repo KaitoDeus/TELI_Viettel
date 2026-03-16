@@ -186,3 +186,36 @@
     justify-content: center;
   }
 }
+
+/* ===== Loading State Inline ===== */
+.loading-bubble-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-size: 14px;
+  color: #666;
+  width: fit-content;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-top: 4px;
+}
+
+.loading-bubble-inline .dot {
+  width: 5px;
+  height: 5px;
+  background: var(--color-brand-red);
+  border-radius: 50%;
+  animation: dot-flash 1.4s infinite linear;
+}
+
+.loading-bubble-inline .dot:nth-child(2) { animation-delay: 0.2s; }
+.loading-bubble-inline .dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dot-flash {
+  0% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0.2; transform: scale(0.8); }
+}

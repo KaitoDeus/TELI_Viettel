@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { chatService } from '../../services/ChatService';
 import mascot from '../../assets/mascot-screen1.png';
 import SuggestionChip from '../../components/SuggestionChip/SuggestionChip';
 import './HomePage.css';
@@ -17,13 +18,16 @@ export default function HomePage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
-      navigate('/chat');
+      const newId = chatService.addNewChat(query.trim());
+      chatService.updateChatData(newId, { inputMessage: query.trim() });
+      navigate(`/chat/${newId}`);
     }
   };
 
   const handleSuggestionClick = (suggestion: string) => {
-    setQuery(suggestion);
-    navigate('/chat');
+    const newId = chatService.addNewChat(suggestion);
+    chatService.updateChatData(newId, { inputMessage: suggestion });
+    navigate(`/chat/${newId}`);
   };
 
   return (
