@@ -5,6 +5,7 @@ import ChatMessage from '../../components/ChatMessage/ChatMessage';
 import EditorPanel from '../../components/EditorPanel/EditorPanel';
 import ChatInput from '../../components/ChatInput/ChatInput';
 import type { IChatHistoryItem } from '../../models/types';
+import { ExportService } from '../../services/ExportService';
 import './ChatPage.css';
 
 export default function ChatPage() {
@@ -17,11 +18,18 @@ export default function ChatPage() {
   const [showEditor, setShowEditor] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Đồng bộ data từ service khi ID thay đổi
   useEffect(() => {
-    const data = chatService.getChatById(chatId);
-    setCurrentChat(data ? { ...data } : null);
-    setShowEditor(false);
+    // Load chat data
+    const chat = chatService.getChatById(chatId);
+    if (chat) {
+      setCurrentChat(chat);
+      // Nếu đã có aiResponse thì mặc định mở trình soạn thảo
+      if (chat.aiResponse) {
+        setShowEditor(true);
+      } else {
+        setShowEditor(false);
+      }
+    }
   }, [chatId]);
 
   // Tự động kích hoạt AI nếu có tin nhắn từ Trang chủ nhưng chưa có phản hồi
@@ -34,19 +42,16 @@ export default function ChatPage() {
   const processAiChat = async (userMsg: string) => {
     setIsLoading(true);
     
-    // Tạo một timeout 60 giây
     const timeoutPromise = new Promise((_, reject) => {
       setTimeout(() => reject(new Error('TIMEOUT')), 60000);
     });
 
     try {
-      // 2. Chạy đua giữa API và Timeout
       const result = await Promise.race([
         chatService.getAiResponse(userMsg),
         timeoutPromise
       ]) as any;
       
-      // 3. Cập nhật phản hồi AI và nội dung giáo án
       const aiUpdates: Partial<IChatHistoryItem> = {
         aiResponse: result.aiResponse,
         editorContent: result.editorContent
@@ -61,8 +66,6 @@ export default function ChatPage() {
       let errorMessage = "Trợ lý AI đang không ổn định!";
       if (error.message === 'TIMEOUT') {
         errorMessage = "Yêu cầu quá thời gian. Trợ lý AI đang không ổn định!";
-      } else if (error.status === 429 || error.message?.includes('429')) {
-        errorMessage = "Hệ thống AI đang quá tải (Lỗi 429). Thầy/Cô vui lòng đợi một lát rồi thử lại nhé!";
       }
 
       const errorUpdate: Partial<IChatHistoryItem> = {
@@ -86,7 +89,6 @@ export default function ChatPage() {
     const userMsg = message;
     setMessage('');
 
-    // 1. Cập nhật tin nhắn của người dùng ngay lập tức
     const updatedData: Partial<IChatHistoryItem> = {
       inputMessage: userMsg,
       aiResponse: undefined, 
@@ -95,17 +97,27 @@ export default function ChatPage() {
     setCurrentChat(prev => prev ? { ...prev, ...updatedData } : null);
     chatService.updateChatData(chatId, updatedData);
 
-    // 2. Xử lý AI
     await processAiChat(userMsg);
   };
 
   const handleActionClick = (idx: number) => {
-    if (idx === 0) setShowEditor(!showEditor);
+    if (idx === 0) {
+      setShowEditor(true);
+    }
   };
 
-  if (!currentChat) {
-    return <div className="chat-page">Không tìm thấy cuộc trò chuyện.</div>;
-  }
+  const handleExportFile = async () => {
+    if (currentChat?.editorContent) {
+      try {
+        await ExportService.exportToWord(currentChat.editorContent);
+      } catch (error) {
+        console.error("Export error:", error);
+        alert("Có lỗi khi xuất file Word. Thầy/Cô hãy thử lại sau nhé!");
+      }
+    }
+  };
+
+  if (!currentChat) return <div>Đang tải cuộc trò chuyện...</div>;
 
   return (
     <main className="chat-page">
@@ -153,11 +165,12 @@ export default function ChatPage() {
           )}
         </div>
 
+
         {/* Editor Panel */}
         {showEditor && (
           <EditorPanel 
             content={currentChat.editorContent} 
-            onExport={() => alert('Đang xuất file...')} 
+            onExport={handleExportFile} 
             onClose={() => setShowEditor(false)}
           />
         )}

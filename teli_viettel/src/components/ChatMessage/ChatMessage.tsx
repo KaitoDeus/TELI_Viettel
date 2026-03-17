@@ -73,21 +73,25 @@ export default function ChatMessage({
         )}
 
         {aiData && !isThinking && (
-          <>
+          <div className="ai-response-container">
             <p className="ai-intro">{renderBoldText(aiData.intro)}</p>
+
             {aiData.sections.map((section, idx) => (
               <div key={idx} className="ai-section">
-                <h3 className="ai-section-title">{section.title}</h3>
-                {section.content?.map((line: string, i: number) => (
+                <h3 className="ai-section-title">{renderBoldText(section.title)}</h3>
+                
+                {section.content?.map((line, i) => (
                   <p key={i} className="ai-section-text">{renderBoldText(line)}</p>
                 ))}
+
                 {section.bullets && (
                   <ul className="ai-section-bullets">
-                    {section.bullets.map((bullet: string, i: number) => (
+                    {section.bullets.map((bullet, i) => (
                       <li key={i}>{renderBoldText(bullet)}</li>
                     ))}
                   </ul>
                 )}
+
                 {section.footer && (
                   <p className="ai-section-text ai-section-footer">{renderBoldText(section.footer)}</p>
                 )}
@@ -105,9 +109,10 @@ export default function ChatMessage({
                 </button>
               ))}
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>
   );
 }
+

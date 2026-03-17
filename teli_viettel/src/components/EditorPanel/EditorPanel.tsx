@@ -47,7 +47,7 @@ export default function EditorPanel({ content, onExport, onClose }: EditorPanelP
               {section.list && (
                 <ul className="doc-list">
                   {section.list.map((item, iIdx) => (
-                    <li key={iIdx} dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+                    <li key={iIdx} dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>') }} />
                   ))}
                 </ul>
               )}
@@ -66,13 +66,17 @@ export default function EditorPanel({ content, onExport, onClose }: EditorPanelP
                         <td>
                           <div className="table-item-bold">{row.leftBold}</div>
                           <div className="table-item-list">
-                            {row.leftList.map((li, lIdx) => <div key={lIdx}>{li}</div>)}
+                            {row.leftList.map((li, lIdx) => (
+                              <div key={lIdx} dangerouslySetInnerHTML={{ __html: li.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>') }} />
+                            ))}
                           </div>
                         </td>
                         <td>
                           {row.rightBold && <div className="table-item-bold">{row.rightBold}</div>}
                           <div className="table-item-list">
-                            {row.rightList.map((ri, riIdx) => <div key={riIdx}>{ri}</div>)}
+                            {row.rightList.map((ri, riIdx) => (
+                              <div key={riIdx} dangerouslySetInnerHTML={{ __html: ri.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>') }} />
+                            ))}
                           </div>
                         </td>
                       </tr>

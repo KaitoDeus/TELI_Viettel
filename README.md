@@ -14,7 +14,8 @@ The name **TELI** is a combination of:
 - **AI Teaching Assistant**: Helps students and teachers by answering questions and generating lesson plans based on verified curriculum data.
 - **Digital IT Lecture Library**: A comprehensive repository of video lectures, slides, and exercises aligned with the Ministry of Education & Training standards.
 - **Interactive Lessons**: Combines theory and practice to enhance learning engagement.
-- **Smart Lesson Planner**: Integrated editor workspace for teachers to draft, format, and export lesson plans directly to Word files.
+- **Smart Lesson Planner**: Integrated editor workspace for teachers to draft, format, and export lesson plans directly to Word files with professional formatting (Table-based activities, clear list structures).
+- **Professional Assessment Tool**: Generates quizzes and exercises with standard layouts, including automatic line breaks for multiple-choice options and bullet points for lists.
 - **Technical Support Corner**: Assists users in resolving technical issues on the platform.
 
 ---
@@ -27,6 +28,7 @@ The name **TELI** is a combination of:
 - **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
 - **Router**: [React Router DOM 7](https://reactrouter.com/)
 - **AI Integration**: [Google Gemini AI API](https://ai.google.dev/) (using `@google/generative-ai`)
+- **Document Generation**: [docx](https://docx.js.org/) & [file-saver](https://github.com/eligrey/FileSaver.js/)
 - **HTTP Client**: [Axios](https://axios-http.com/)
 
 ---
@@ -83,7 +85,7 @@ Create a `.env` file in the `teli_viettel` directory and add your Google Gemini 
 
 ```env
 VITE_GEMINI_API_KEY=your_api_key_here
-VITE_GEMINI_MODEL=gemini-2.5-flash
+VITE_GEMINI_MODEL=gemini-2.5-flash || gemini-3-flash-preview
 ```
 
 ### 4. Run Development Server
