@@ -23,12 +23,8 @@ export default function ChatPage() {
     const chat = chatService.getChatById(chatId);
     if (chat) {
       setCurrentChat(chat);
-      // Nếu đã có aiResponse thì mặc định mở trình soạn thảo
-      if (chat.aiResponse) {
-        setShowEditor(true);
-      } else {
-        setShowEditor(false);
-      }
+      // Không tự động mở trình soạn thảo để tránh gây phiền trên mobile
+      setShowEditor(false);
     }
   }, [chatId]);
 
