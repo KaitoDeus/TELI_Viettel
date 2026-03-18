@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { chatService } from '../../services/ChatService';
 import mascot from '../../assets/mascot-screen1.png';
@@ -13,6 +13,7 @@ const suggestions = [
 
 export default function HomePage() {
   const [query, setQuery] = useState('');
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -25,9 +26,17 @@ export default function HomePage() {
   };
 
   const handleSuggestionClick = (suggestion: string) => {
-    const newId = chatService.addNewChat(suggestion);
-    chatService.updateChatData(newId, { inputMessage: suggestion });
-    navigate(`/chat/${newId}`);
+    setQuery(suggestion);
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+      textareaRef.current.style.height = 'auto';
+      // Use setTimeout to ensure the DOM has updated the textarea value before calculating scrollHeight
+      setTimeout(() => {
+        if (textareaRef.current) {
+          textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 200)}px`;
+        }
+      }, 0);
+    }
   };
 
   return (
@@ -47,6 +56,7 @@ export default function HomePage() {
         {/* Search Bar */}
         <form className="home-search-form" onSubmit={handleSubmit}>
           <textarea
+            ref={textareaRef}
             className="home-search-input"
             placeholder="Hôm nay chúng ta soạn bài gì nhỉ?"
             value={query}
