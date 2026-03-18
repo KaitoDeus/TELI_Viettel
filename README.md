@@ -24,8 +24,13 @@ The name **TELI** is a combination of:
 - **Smart Responsive Sidebar**:
   - **Desktop**: Collapses into a sleek 68px mini-sidebar showing only essential icons to maximize workspace while retaining quick access.
   - **Mobile**: Features smooth slide-out mechanics. The hamburger menu smartly hides to prevent UI overlapping, and the chat history list is independently scrollable with a slim, customized scrollbar.
-- **Pill-shaped AI Action Buttons**: Standardized aesthetic utilizing Viettel Red for the three core actions (*Nội dung giáo án, Slide bài giảng, Bài tập thực hành cho học sinh*). Buttons elegantly transition to deep blue upon active selection.
-- **Dynamic Content Formatting**: Rich text formatting with auto-bullet points for AI responses, robust Table Generation for lesson plans, and polished micro-animations for collapse/expand elements.
+- **Pill-shaped AI Action Buttons**: Standardized aesthetic utilizing specific HEX colors: Viettel Red (`#EA2A32F2`) for default prompts and Deep Blue (`#0B1E7BF5`) for active selection, both with high-contrast white text.
+- **Perfectly Aligned Chat Column**: All chat elements—header title, messages, and input bar—are now precisely centered within a consistent **800px** content width, eliminating horizontal drift.
+- **Natural Conversation Bubbles**: User messages are redesigned into right-aligned bubbles with a subtle "tail" effect, mimicking modern mobile messaging experiences.
+- **High-Fidelity AI Mascot**: Enhanced the AI mascot avatar with a larger 36px size and `crisp-edges` rendering for superior visual clarity and brand recognition.
+- **Smart Mobile Editor Experience**: The Word-style editor now transitions to a full-screen fixed overlay on mobile with a high z-index (3000), preventing menu clipping and improving focus.
+- **Responsive Interaction Polish**: Home page suggestion chips now intelligently stack vertically on small screens, preventing horizontal overflow while maintaining 100% readability.
+
 
 ---
 

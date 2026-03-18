@@ -90,8 +90,15 @@ src/
 - [x] **Sidebar Đáp ứng tinh vi (Smart UX)**:
   - Máy tính: Sidebar thu gọn thành thanh Mini 68px, giữ lại khung icon thay vì biến mất.
   - Điện thoại: Cuộn mượt mà vùng Lịch sử riêng biệt (thanh cuộn tùy chỉnh siêu mỏng trong suốt), tự động ẩn/đồng bộ nút Hamburger điều hướng.
-- [x] **Giao diện Nút AI (Pill Buttons)**: Tiêu chuẩn hóa 3 nút chức năng phản hồi của AI (*Nội dung giáo án, Slide bài giảng, Bài tập thực hành*) đúng định dạng siêu bo tròn, tông màu Viettel Đỏ chuẩn và chuyển Xanh Navy đậm khi kích hoạt.
+- [x] **Giao diện Nút AI (Pill Buttons)**: Tiêu chuẩn hóa 3 nút chức năng phản hồi của AI (*Nội dung giáo án, Slide bài giảng, Bài tập thực hành*) đúng định dạng siêu bo tròn. Cập nhật mã màu HEX chuẩn theo yêu cầu: Đỏ (#EA2A32F2) cho mặc định (chữ trắng) và Xanh dương (#0B1E7BF5) khi kích hoạt (chữ trắng).
 - [x] **Căn chỉnh Nhận diện Thương hiệu**: Đồng bộ kích thước font, giãn cách chữ (letter-spacing, line-height) cho cụm Logo "TELI viettel" trên Navbar.
+- [x] **Hoàn thiện Bố cục Chat (Alignment)**: Thiết lập cột nội dung trung tâm 800px chuẩn, đảm bảo Header, tin nhắn và thanh nhập liệu thẳng hàng tuyệt đối.
+- [x] **Thiết kế Bong bóng Chat Cá nhân**: Chuyển tin nhắn User sang dạng bong bóng bo góc có "đuôi" (tail) căn phải, tạo cảm giác đối thoại tự nhiên như các ứng dụng chat hiện đại.
+- [x] **Tinh chỉnh Nút Thu gọn (Toggle)**: Di chuyển mũi tên thu gọn lên góc trên bên phải khung tin nhắn. Trạng thái thu gọn (Collapsed) được thu nhỏ tối đa thành một vòng tròn linh hoạt, không chiếm diện tích.
+- [x] **Làm nét Mascot**: Tăng kích thước Avatar AI lên 36px và áp dụng thuộc tính `crisp-edges` để linh vật sắc nét, không bị nhòe trên mọi độ phân giải.
+- [x] **Sửa lỗi Responsive Editor**: Khắc phục hiện tượng bảng soạn thảo Word bị đè dưới Menu trên Mobile bằng cách chuyển sang dạng `position: fixed` với z-index cao tuyệt đối (3000).
+- [x] **Tối ưu Trang chủ Mobile**: Điều chỉnh ô nhập liệu không bị nhảy dòng placeholder và thiết lập các thẻ gợi ý (Suggestions) tự động xuống dòng/xếp chồng hàng dọc để không bị tràn màn hình.
+
 
 
 ---
