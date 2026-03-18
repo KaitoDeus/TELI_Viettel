@@ -39,70 +39,93 @@ export default function ChatMessage({
   activeActionIdx
 }: ChatMessageProps) {
   if (type === 'user') {
+
+
     return (
-      <div className="chat-message user-message">
-        <div className={`message-bubble user-bubble ${isCollapsed ? 'collapsed' : ''}`}>
-          <button className="collapse-btn" onClick={onToggleCollapse} aria-label={isCollapsed ? "Mở rộng" : "Thu gọn"}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transform: isCollapsed ? 'rotate(0deg)' : 'rotate(180deg)', transition: 'transform 0.2s' }}>
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </button>
-          {!isCollapsed && (
-            <div className="message-content">
-              <p>{content}</p>
+      <div className="chat-message user-message-layout">
+        <div 
+          className={`user-prompt-box ${isCollapsed ? 'is-collapsed' : ''}`}
+        >
+          <div className="user-prompt-header">
+            <div className="user-prompt-text-container">
+              {isCollapsed ? null : (
+                <div className="user-prompt-full-content">
+                  {content?.split('\n').map((line, i) => (
+                    <p key={i}>{line}</p>
+                  ))}
+                </div>
+              )}
             </div>
-          )}
+            <button 
+              className={`user-prompt-toggle ${isCollapsed ? '' : 'active'}`} 
+              onClick={(e) => {
+                e.stopPropagation();
+                onToggleCollapse && onToggleCollapse();
+              }}
+              aria-label={isCollapsed ? "Mở rộng" : "Thu gọn"}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+          </div>
         </div>
+
       </div>
     );
   }
 
   return (
-    <div className="chat-message ai-message">
-      <div className="ai-avatar">
+    <div className="chat-message ai-message-layout">
+      <div className="ai-avatar-msg">
         <img src={mascotAvatar} alt="TELI" />
       </div>
-      <div className="message-bubble ai-bubble">
+      <div className="ai-bubble-container">
         {isThinking && (
-          <div className="loading-bubble-inline">
-            <span className="dot"></span>
-            <span className="dot"></span>
-            <span className="dot"></span>
-            <span>Đang suy nghĩ...</span>
+          <div className="thinking-bubble">
+            <div className="thinking-dots">
+              <span className="dot"></span>
+              <span className="dot"></span>
+              <span className="dot"></span>
+            </div>
+            <span className="thinking-text">Đang suy nghĩ...</span>
           </div>
         )}
 
         {aiData && !isThinking && (
-          <div className="ai-response-container">
-            <p className="ai-intro">{renderBoldText(aiData.intro)}</p>
+          <div className="ai-response-body">
+            <p className="ai-intro-text">{renderBoldText(aiData.intro)}</p>
 
             {aiData.sections.map((section, idx) => (
-              <div key={idx} className="ai-section">
-                <h3 className="ai-section-title">{renderBoldText(section.title)}</h3>
-                
-                {section.content?.map((line, i) => (
-                  <p key={i} className="ai-section-text">{renderBoldText(line)}</p>
-                ))}
+              <div key={idx} className="ai-section-group">
+                {idx > 0 && <hr className="ai-section-divider" />}
+                <div className="ai-section-content">
+                  <h3 className="ai-section-heading">{renderBoldText(section.title)}</h3>
+                  
+                  {section.content?.map((line, i) => (
+                    <p key={i} className="ai-section-paragraph">{renderBoldText(line)}</p>
+                  ))}
 
-                {section.bullets && (
-                  <ul className="ai-section-bullets">
-                    {section.bullets.map((bullet, i) => (
-                      <li key={i}>{renderBoldText(bullet)}</li>
-                    ))}
-                  </ul>
-                )}
+                  {section.bullets && (
+                    <ul className="ai-section-list">
+                      {section.bullets.map((bullet, i) => (
+                        <li key={i}>{renderBoldText(bullet)}</li>
+                      ))}
+                    </ul>
+                  )}
 
-                {section.footer && (
-                  <p className="ai-section-text ai-section-footer">{renderBoldText(section.footer)}</p>
-                )}
+                  {section.footer && (
+                    <p className="ai-section-footer-text">{renderBoldText(section.footer)}</p>
+                  )}
+                </div>
               </div>
             ))}
 
-            <div className="ai-actions fade-in">
+            <div className="ai-suggestion-actions">
               {['Nội dung giáo án', 'Slide bài giảng', 'Bài tập thực hành cho học sinh'].map((action, idx) => (
                 <button 
                   key={idx} 
-                  className={`ai-action-btn primary-red ${activeActionIdx === idx ? 'active' : ''}`}
+                  className={`ai-suggestion-btn ${activeActionIdx === idx ? 'active' : ''}`}
                   onClick={() => onActionClick?.(idx)}
                 >
                   {action}
@@ -115,4 +138,3 @@ export default function ChatMessage({
     </div>
   );
 }
-

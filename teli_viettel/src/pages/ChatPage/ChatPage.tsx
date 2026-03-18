@@ -116,51 +116,66 @@ export default function ChatPage() {
   if (!currentChat) return <div>Đang tải cuộc trò chuyện...</div>;
 
   return (
-    <main className="chat-page">
-      {/* Header */}
-      <header className="chat-header">
-        <h1 className="chat-title">{currentChat.title}</h1>
-        <div className="user-avatar">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-            <circle cx="12" cy="7" r="4" />
-          </svg>
-        </div>
-      </header>
+<main className="chat-page">
+
 
       <div className={`chat-area-container ${showEditor ? 'show-editor' : ''}`}>
-        {/* Chat Area */}
-        <div className="chat-area">
-          {currentChat.inputMessage && (
-            <ChatMessage 
-              type="user"
-              content={currentChat.inputMessage}
-              isCollapsed={isCollapsed}
-              onToggleCollapse={() => setIsCollapsed(!isCollapsed)}
-            />
-          )}
+        <div className="chat-main-column">
+          <header className="chat-header">
+            <div className="chat-header-inner">
+              <div className="header-left"></div>
+              <h1 className="chat-title-centered">
+                {currentChat.title}
+              </h1>
+              <div className="user-avatar-header">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </div>
+            </div>
+          </header>
 
-          {currentChat.aiResponse && (
-            <ChatMessage 
-              type="ai"
-              aiData={currentChat.aiResponse}
-              onActionClick={handleActionClick}
-              activeActionIdx={showEditor ? 0 : -1}
-            />
-          )}
+          <div className="chat-area">
+            <div className="chat-content-container">
+              {currentChat.inputMessage && (
+                <ChatMessage 
+                  type="user"
+                  content={currentChat.inputMessage}
+                  isCollapsed={isCollapsed}
+                  onToggleCollapse={() => setIsCollapsed(!isCollapsed)}
+                />
+              )}
 
-          {isLoading && !currentChat.aiResponse && (
-            <ChatMessage 
-              type="ai"
-              isThinking={true}
-            />
-          )}
+              {currentChat.aiResponse && (
+                <ChatMessage 
+                  type="ai"
+                  aiData={currentChat.aiResponse}
+                  onActionClick={handleActionClick}
+                  activeActionIdx={showEditor ? 0 : -1}
+                />
+              )}
 
-          {!currentChat.inputMessage && !currentChat.aiResponse && !isLoading && (
-            <div className="chat-empty">Chưa có nội dung cho cuộc trò chuyện này.</div>
-          )}
+              {isLoading && !currentChat.aiResponse && (
+                <ChatMessage 
+                  type="ai"
+                  isThinking={true}
+                />
+              )}
+
+              {!currentChat.inputMessage && !currentChat.aiResponse && !isLoading && (
+                <div className="chat-empty">Chưa có nội dung cho cuộc trò chuyện này.</div>
+              )}
+            </div>
+          </div>
+
+          <ChatInput 
+            value={message} 
+            onChange={setMessage} 
+            onSend={handleSend} 
+            placeholder={isLoading ? "Vui lòng chờ giây lát..." : "Hôm nay chúng ta soạn bài gì nhỉ?"}
+          />
         </div>
-
 
         {/* Editor Panel */}
         {showEditor && (
@@ -172,12 +187,7 @@ export default function ChatPage() {
         )}
       </div>
 
-      <ChatInput 
-        value={message} 
-        onChange={setMessage} 
-        onSend={handleSend} 
-        placeholder={isLoading ? "Vui lòng chờ giây lát..." : "Hôm nay chúng ta soạn bài gì nhỉ?"}
-      />
+
     </main>
   );
 }

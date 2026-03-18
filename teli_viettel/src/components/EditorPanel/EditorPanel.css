@@ -160,16 +160,21 @@
 }
 @media (max-width: 767px) {
   .editor-panel {
-    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3000; /* Higher than App.css mobile-toggle (2000) */
     border-left: none;
-    border-top: 1px solid var(--color-border);
-    animation: slideInUp 0.3s ease-out;
+    animation: slideInUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   @keyframes slideInUp {
     from { transform: translateY(100%); }
     to { transform: translateY(0); }
   }
+
 
   .editor-content-area {
     padding: 20px 10px;

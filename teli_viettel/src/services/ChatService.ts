@@ -46,8 +46,34 @@ class ChatService {
   public addNewChat(title: string): number {
     const truncatedTitle = title.length > 60 ? title.substring(0, 57) + "..." : title;
     const newId = this.history.length > 0 ? Math.max(...this.history.map(c => c.id)) + 1 : 1;
-    this.history.unshift({ id: newId, title: truncatedTitle });
+    this.history.unshift({ id: newId, title: truncatedTitle, pinned: false });
     return newId;
+  }
+
+  public deleteChat(id: number): void {
+    const index = this.history.findIndex(c => c.id === id);
+    if (index !== -1) {
+      this.history.splice(index, 1);
+    }
+  }
+
+  public renameChat(id: number, newTitle: string): void {
+    const index = this.history.findIndex(c => c.id === id);
+    if (index !== -1) {
+      this.history[index].title = newTitle;
+    }
+  }
+
+  public togglePinChat(id: number): void {
+    const index = this.history.findIndex(c => c.id === id);
+    if (index !== -1) {
+      this.history[index].pinned = !this.history[index].pinned;
+      // Re-sort history: pinned items at the top
+      this.history.sort((a, b) => {
+        if (a.pinned === b.pinned) return 0;
+        return a.pinned ? -1 : 1;
+      });
+    }
   }
 
   public updateChatData(id: number, data: Partial<IChatHistoryItem>): void {

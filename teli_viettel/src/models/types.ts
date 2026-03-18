@@ -23,6 +23,7 @@ export interface IChatHistoryItem {
   id: number;
   title: string;
   active?: boolean;
+  pinned?: boolean;
   inputMessage?: string;
   aiResponse?: IAIResponse;
   editorContent?: {
