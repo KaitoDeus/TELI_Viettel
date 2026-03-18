@@ -98,11 +98,11 @@ export default function ChatMessage({
               </div>
             ))}
 
-            <div className="ai-actions">
-              {aiData.actions.map((action, idx) => (
+            <div className="ai-actions fade-in">
+              {['Nội dung giáo án', 'Slide bài giảng', 'Bài tập thực hành cho học sinh'].map((action, idx) => (
                 <button 
                   key={idx} 
-                  className={`ai-action-btn ${activeActionIdx === idx ? 'primary' : 'secondary'}`}
+                  className={`ai-action-btn primary-red ${activeActionIdx === idx ? 'active' : ''}`}
                   onClick={() => onActionClick?.(idx)}
                 >
                   {action}

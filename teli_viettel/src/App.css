@@ -10,11 +10,11 @@
   flex: 1;
   min-width: 0; /* Fix flex child overflow */
   background: var(--color-bg);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ===== Mobile & Tablet Viewport Fixes ===== */
 
-/* Hamburger Button */
 .mobile-toggle {
   display: none;
   position: fixed;
@@ -35,9 +35,7 @@
 }
 
 .sidebar-open .mobile-toggle {
-  background: var(--color-sidebar-hover);
-  color: white;
-  border-color: transparent;
+  display: none !important; /* Hide standard mobile toggle when sidebar is open */
 }
 
 /* Sidebar Overlay */

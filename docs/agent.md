@@ -86,6 +86,13 @@ src/
 - [x] **Điều hướng & Reset trạng thái**: Triển khai Dynamic Routing (`/chat/:id`) và cơ chế `key` component để tự động đóng giáo án và làm mới tin nhắn khi chuyển đổi mục lịch sử.
 - [x] **Nút đóng tài liệu (X)**: Thêm nút X vào góc bảng soạn thảo (`EditorPanel`) giúp người dùng tắt tài liệu thuận tiện và nhanh chóng.
 - [x] **Tối ưu Responsive toàn diện**: Cải thiện hiển thị Mobile cho thanh nhập liệu, xếp chồng các nút hành động của AI (full-width) và bố cục chia đôi màn hình khi xem giáo án.
+- [x] **Trải nghiệm gõ phím Glassmorphism**: Cập nhật thanh nhập liệu sang nền trong suốt, mờ ảo (kính mờ), giải quyết triệt để lỗi con trỏ văn bản (`I-beam`) bị đè lên thanh cuộn bằng `cursor: auto`.
+- [x] **Sidebar Đáp ứng tinh vi (Smart UX)**:
+  - Máy tính: Sidebar thu gọn thành thanh Mini 68px, giữ lại khung icon thay vì biến mất.
+  - Điện thoại: Cuộn mượt mà vùng Lịch sử riêng biệt (thanh cuộn tùy chỉnh siêu mỏng trong suốt), tự động ẩn/đồng bộ nút Hamburger điều hướng.
+- [x] **Giao diện Nút AI (Pill Buttons)**: Tiêu chuẩn hóa 3 nút chức năng phản hồi của AI (*Nội dung giáo án, Slide bài giảng, Bài tập thực hành*) đúng định dạng siêu bo tròn, tông màu Viettel Đỏ chuẩn và chuyển Xanh Navy đậm khi kích hoạt.
+- [x] **Căn chỉnh Nhận diện Thương hiệu**: Đồng bộ kích thước font, giãn cách chữ (letter-spacing, line-height) cho cụm Logo "TELI viettel" trên Navbar.
+
 
 ---
 

@@ -46,14 +46,29 @@ export default function HomePage() {
       <div className="home-content">
         {/* Search Bar */}
         <form className="home-search-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
+          <textarea
             className="home-search-input"
             placeholder="Hôm nay chúng ta soạn bài gì nhỉ?"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              const textarea = e.target;
+              textarea.style.height = 'auto';
+              textarea.style.height = `${Math.min(textarea.scrollHeight, 200)}px`;
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                if (query.trim()) {
+                  const newId = chatService.addNewChat(query.trim());
+                  chatService.updateChatData(newId, { inputMessage: query.trim() });
+                  navigate(`/chat/${newId}`);
+                }
+              }
+            }}
+            rows={1}
           />
-          <button type="submit" className="home-search-btn" aria-label="Tìm kiếm">
+          <button type="submit" className="home-search-btn" aria-label="Tìm kiếm" disabled={!query.trim()}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="11" cy="11" r="8" />
               <path d="M21 21l-4.35-4.35" />

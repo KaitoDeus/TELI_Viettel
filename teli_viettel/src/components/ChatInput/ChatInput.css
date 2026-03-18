@@ -1,10 +1,11 @@
 .chat-input-bar {
-  padding: 16px 28px 24px;
-  background: linear-gradient(to top, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 0));
+  padding: 8px 28px 16px; /* Reduced vertical padding */
+  background: transparent;
   position: sticky;
   bottom: 0;
   width: 100%;
   z-index: 10;
+  pointer-events: none; /* Allow clicks to pass through the container except for children */
 }
 
 .chat-input-wrapper {
@@ -12,19 +13,49 @@
   margin: 0 auto;
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  padding-bottom: 4px;
+  pointer-events: auto; /* Re-enable pointer events for the input area */
 }
 
 .chat-input {
   width: 100%;
-  padding: 16px 60px 16px 50px;
-  border-radius: 32px;
+  padding: 14px 60px 14px 50px;
+  border-radius: 26px;
   border: 1px solid #E5E7EB;
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px); /* Frosted glass effect */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   font-size: 15px;
   outline: none;
-  transition: all 0.2s;
+  cursor: auto; /* Fixes text cursor showing over scrollbar */
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: none; /* Disable manual resizing */
+  min-height: 52px;
+  max-height: 200px;
+  line-height: 1.5;
+  font-family: inherit;
+  display: block;
+  overflow-y: auto;
+}
+
+/* Custom Scrollbar for Chat Input */
+.chat-input::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-input::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 10px 0; /* Keep scrollbar within rounded corners */
+}
+
+.chat-input::-webkit-scrollbar-thumb {
+  background: #E5E7EB;
+  border-radius: 10px;
+}
+
+.chat-input::-webkit-scrollbar-thumb:hover {
+  background: #D1D5DB;
 }
 
 .chat-input:focus {
@@ -35,6 +66,7 @@
 .chat-add-btn {
   position: absolute;
   left: 14px;
+  bottom: 10px; /* Position relative to bottom of wrapper */
   width: 32px;
   height: 32px;
   color: #9CA3AF;
@@ -50,16 +82,18 @@
 
 .chat-send-btn {
   position: absolute;
-  right: 8px;
+  right: 6px;
+  bottom: 6px; /* Position relative to bottom of wrapper */
   width: 40px;
   height: 40px;
-  background: #10203a; /* Dark blue from screenshot */
+  background: #10203a;
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.2s, background 0.2s;
+  border: none;
 }
 
 .chat-send-btn:hover {
@@ -72,18 +106,22 @@
   }
 
   .chat-input {
-    padding: 12px 50px 12px 40px;
+    padding: 10px 50px 10px 40px;
     font-size: 14px;
+    min-height: 44px;
+    border-radius: 22px;
   }
 
   .chat-add-btn {
     left: 10px;
+    bottom: 10px;
     width: 24px;
     height: 24px;
   }
 
   .chat-send-btn {
-    right: 6px;
+    right: 5px;
+    bottom: 5px;
     width: 32px;
     height: 32px;
   }

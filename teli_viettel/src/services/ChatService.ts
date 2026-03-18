@@ -44,8 +44,9 @@ class ChatService {
   }
 
   public addNewChat(title: string): number {
+    const truncatedTitle = title.length > 60 ? title.substring(0, 57) + "..." : title;
     const newId = this.history.length > 0 ? Math.max(...this.history.map(c => c.id)) + 1 : 1;
-    this.history.unshift({ id: newId, title });
+    this.history.unshift({ id: newId, title: truncatedTitle });
     return newId;
   }
 

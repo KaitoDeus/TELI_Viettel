@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import './ChatInput.css';
 
 interface ChatInputProps {
@@ -8,9 +9,34 @@ interface ChatInputProps {
 }
 
 export default function ChatInput({ value, onChange, onSend, placeholder }: ChatInputProps) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const adjustHeight = () => {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = `${Math.min(textarea.scrollHeight, 200)}px`;
+    }
+  };
+
+  useEffect(() => {
+    adjustHeight();
+  }, [value]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSend();
+    if (value.trim()) {
+      onSend();
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (value.trim()) {
+        onSend();
+      }
+    }
   };
 
   return (
@@ -22,14 +48,16 @@ export default function ChatInput({ value, onChange, onSend, placeholder }: Chat
             <line x1="5" y1="12" x2="19" y2="12" />
           </svg>
         </button>
-        <input
-          type="text"
+        <textarea
+          ref={textareaRef}
           className="chat-input"
           placeholder={placeholder || "Hôm nay chúng ta soạn bài gì nhỉ?"}
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          onKeyDown={handleKeyDown}
+          rows={1}
         />
-        <button type="submit" className="chat-send-btn" aria-label="Gửi">
+        <button type="submit" className="chat-send-btn" aria-label="Gửi" disabled={!value.trim()}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="11" cy="11" r="8" />
             <path d="M21 21l-4.35-4.35" />

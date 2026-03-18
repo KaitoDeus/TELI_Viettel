@@ -7,22 +7,24 @@ import LibraryPage from './pages/LibraryPage/LibraryPage';
 import './App.css';
 
 function AppContent() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 767);
   const location = useLocation();
+
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   // Close sidebar on navigation on mobile
   useEffect(() => {
-    // Close sidebar whenever the path changes
-    // Using a micro-task ensures this happens after the initial render cycle
-    Promise.resolve().then(() => setIsSidebarOpen(false));
+    if (window.innerWidth <= 767) {
+      Promise.resolve().then(() => setIsSidebarOpen(false));
+    }
   }, [location.pathname]);
 
   return (
-    <div className={`app-layout ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+    <div className={`app-layout ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
       {/* Mobile Menu Button */}
       <button 
         className="mobile-toggle"
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        onClick={toggleSidebar}
         aria-label="Toggle Menu"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -39,11 +41,11 @@ function AppContent() {
       </button>
 
       {/* Overlay for mobile */}
-      {isSidebarOpen && (
+      {isSidebarOpen && window.innerWidth <= 767 && (
         <div className="sidebar-overlay" onClick={() => setIsSidebarOpen(false)} />
       )}
 
-      <Sidebar isOpen={isSidebarOpen} />
+      <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
       
       <div className="main-content">
         <Routes>

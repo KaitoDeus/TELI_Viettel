@@ -18,6 +18,15 @@ The name **TELI** is a combination of:
 - **Professional Assessment Tool**: Generates quizzes and exercises with standard layouts, including automatic line breaks for multiple-choice options and bullet points for lists.
 - **Technical Support Corner**: Assists users in resolving technical issues on the platform.
 
+## ✨ Recent UX/UI Refinements
+
+- **Glassmorphism Chat Input**: The chat input field features a transparent frosted glass background (`backdrop-filter`) with an optimized scroll behavior and hidden text cursor over the scrollbar.
+- **Smart Responsive Sidebar**:
+  - **Desktop**: Collapses into a sleek 68px mini-sidebar showing only essential icons to maximize workspace while retaining quick access.
+  - **Mobile**: Features smooth slide-out mechanics. The hamburger menu smartly hides to prevent UI overlapping, and the chat history list is independently scrollable with a slim, customized scrollbar.
+- **Pill-shaped AI Action Buttons**: Standardized aesthetic utilizing Viettel Red for the three core actions (*Nội dung giáo án, Slide bài giảng, Bài tập thực hành cho học sinh*). Buttons elegantly transition to deep blue upon active selection.
+- **Dynamic Content Formatting**: Rich text formatting with auto-bullet points for AI responses, robust Table Generation for lesson plans, and polished micro-animations for collapse/expand elements.
+
 ---
 
 ## 🛠️ Technology Stack
