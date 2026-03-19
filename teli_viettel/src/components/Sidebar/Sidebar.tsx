@@ -21,6 +21,13 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editValue, setEditValue] = useState('');
   
+  // Subscribe to ChatService changes
+  useEffect(() => {
+    return chatService.subscribe((updatedHistory) => {
+      setChatHistory(updatedHistory);
+    });
+  }, []);
+
   // Modal states
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
@@ -65,7 +72,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         break;
       case 'pin':
         chatService.togglePinChat(id);
-        setChatHistory([...chatService.getChatHistory()]);
+        // setChatHistory removed, subscriber will handle it
         break;
       case 'delete':
         setShowDeleteModal(true);
@@ -76,7 +83,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const confirmDelete = () => {
     if (targetChat) {
       chatService.deleteChat(targetChat.id);
-      setChatHistory([...chatService.getChatHistory()]);
+      // setChatHistory removed, subscriber will handle it
       if (chatIdFromUrl === targetChat.id) {
         navigate('/');
       }
@@ -98,7 +105,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     e.preventDefault();
     if (editValue.trim()) {
       chatService.renameChat(id, editValue.trim());
-      setChatHistory([...chatService.getChatHistory()]);
+      // setChatHistory removed, subscriber will handle it
     }
     setEditingId(null);
   };
@@ -152,7 +159,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <ul className="sidebar-history-list">
             {chatHistory.map((item) => (
               <li
-                key={item.id}
+                key={`${item.id}-${item.pinned}`}
                 className={`sidebar-history-item ${item.id === chatIdFromUrl ? 'active' : ''} ${item.pinned ? 'pinned' : ''}`}
                 onClick={() => navigate(`/chat/${item.id}`)}
               >

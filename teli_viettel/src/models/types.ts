@@ -22,6 +22,7 @@ export interface IAIResponse {
 export interface IChatHistoryItem {
   id: number;
   title: string;
+  createdAt?: number;
   active?: boolean;
   pinned?: boolean;
   inputMessage?: string;

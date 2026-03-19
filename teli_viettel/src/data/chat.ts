@@ -57,6 +57,7 @@ export const CHAT_HISTORY_DATA: IChatHistoryItem[] = [
   { 
     id: 1, 
     title: 'Soạn bài: Chuột máy tính lớp 4', 
+    createdAt: 1742360000000,
     active: true,
     inputMessage: `Tôi đang dạy Tin học lớp 4. Dựa vào giáo trình Tin học của Bộ giáo dục & đào tạo, hãy giúp tôi soạn nội dung bài giảng về chuột máy tính cho học sinh.
 Bài giảng cần:
@@ -120,6 +121,7 @@ Bài giảng cần:
   { 
     id: 2, 
     title: 'Hoạt động thực hành Paint lớp 4',
+    createdAt: 1742350000000,
     inputMessage: 'Hãy gợi ý cho tôi các hoạt động thực hành vẽ nâng cao với phần mềm Paint dành cho học sinh lớp 4 (các em đã biết vẽ hình cơ bản).',
     aiResponse: {
       intro: 'Chào thầy/cô, dựa trên chương trình Tin học lớp 4, tôi xin đề xuất một chuỗi hoạt động thực hành Paint nâng cao nhằm phát triển tư duy thẩm mỹ và kỹ năng điều khiển chuột tinh xảo cho học sinh:',
@@ -214,6 +216,7 @@ Bài giảng cần:
   { 
     id: 3, 
     title: 'Bài giảng PowerPoint: Chuột máy tính lớp 3',
+    createdAt: 1742340000000,
     inputMessage: 'Soạn giúp tôi đề cương chi tiết cho 5 slide bài giảng PowerPoint về chủ đề Chuột máy tính cho học sinh lớp 3.',
     aiResponse: {
       intro: 'Dưới đây là đề cương chi tiết và kịch bản cho 5 slide bài giảng PowerPoint về "Chuột máy tính" được thiết kế đặc biệt cho lứa tuổi lớp 3, đảm bảo sự sinh động và lôi cuốn:',
@@ -298,6 +301,7 @@ Bài giảng cần:
   { 
     id: 4, 
     title: 'Hoạt động thực hành: Nhận biết bàn phím lớp 3',
+    createdAt: 1742330000000,
     inputMessage: 'Tôi cần một kịch bản hoạt động thực hành sinh động để giúp học sinh lớp 3 nhận biết các khu vực trên bàn phím máy tính.',
     aiResponse: {
       intro: 'Chào thầy cô, bàn phím là một "mê cung" các nút bấm đối với học sinh lớp 3. Để các em không bị choáng ngợp, chúng ta nên chia nhỏ các khu vực và sử dụng trò chơi vận động nhé:',
@@ -361,6 +365,7 @@ Bài giảng cần:
   { 
     id: 5, 
     title: 'Cách giải thích Internet cho học sinh lớp 4',
+    createdAt: 1742320000000,
     inputMessage: 'Làm sao để giải thích khái niệm Internet cho học sinh lớp 4 một cách trực quan, dễ hiểu nhất mà không dùng quá nhiều từ chuyên môn?',
     aiResponse: {
       intro: 'Giải thích về Internet cho trẻ em cần những ví dụ gần gũi với cuộc sống. Thay vì nói về giao thức hay máy chủ, thầy cô hãy sử dụng hình ảnh "Mạng nhện khổng lồ" hoặc "Thư viện không biên giới" nhé:',
@@ -422,6 +427,7 @@ Bài giảng cần:
   { 
     id: 6, 
     title: 'Soạn slide: Thư mục và tệp tin lớp 5',
+    createdAt: 1742310000000,
     inputMessage: 'Hãy thiết kế cấu trúc 5 slide bài giảng về "Thư mục và Tệp tin" cho học sinh lớp 5, cần có ví dụ thực tế về việc sắp xếp ngăn nắp.',
     aiResponse: {
       intro: 'Chào mừng thầy cô đến với bài học về sự ngăn nắp trong máy tính! Với lớp 5, chúng ta cần nhấn mạnh vào tư duy quản lý thông tin thông qua việc tổ chức Thư mục và Tệp tin khoa học:',
@@ -491,6 +497,7 @@ Bài giảng cần:
   { 
     id: 7, 
     title: 'Bài giảng: Cách gõ bàn phím 10 ngón lớp 5',
+    createdAt: 1742300000000,
     inputMessage: 'Soạn giáo án dạy kỹ năng gõ bàn phím 10 ngón cho lớp 5. Cần tập trung vào hàng phím cơ sở và các phần mềm luyện tập miễn phí.',
     aiResponse: {
       intro: 'Gõ 10 ngón là một kỹ năng cần sự kiên trì và đúng phương pháp ngay từ đầu. Dưới đây là lộ trình để thầy cô giúp các em học sinh lớp 5 làm chủ bàn phím mà không cần nhìn phím:',
@@ -560,6 +567,7 @@ Bài giảng cần:
   { 
     id: 8, 
     title: 'Ví dụ dễ hiểu về mạng Internet lớp 5',
+    createdAt: 1742290000000,
     inputMessage: 'Gợi ý một số ví dụ thực tế và kịch bản sắm vai để học sinh lớp 5 hiểu được cách dữ liệu di chuyển trên Internet (từ máy này sang máy kia).',
     aiResponse: {
       intro: 'Để trả lời câu hỏi "Làm sao ảnh của tớ gửi đến máy cậu được?", thầy cô hãy biến lớp học thành một "Mạng lưới bưu điện số" thu nhỏ thông qua kịch bản sắm vai dưới đây:',

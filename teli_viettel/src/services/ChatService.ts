@@ -25,6 +25,7 @@ const getAIModule = () => {
 class ChatService {
   private static instance: ChatService;
   private history: IChatHistoryItem[] = CHAT_HISTORY_DATA;
+  private listeners: Array<(history: IChatHistoryItem[]) => void> = [];
 
   private constructor() {}
 
@@ -35,8 +36,33 @@ class ChatService {
     return ChatService.instance;
   }
 
+  private notify(): void {
+    const sortedHistory = this.getChatHistory();
+    this.listeners.forEach(listener => listener(sortedHistory));
+  }
+
+  public subscribe(listener: (history: IChatHistoryItem[]) => void): () => void {
+    this.listeners.push(listener);
+    // Trả về hàm cleanup để unsubscribe
+    return () => {
+      this.listeners = this.listeners.filter(l => l !== listener);
+    };
+  }
+
   public getChatHistory(): IChatHistoryItem[] {
-    return this.history;
+    return [...this.history].sort((a, b) => {
+      // 1. Ghim lên đầu
+      if (a.pinned && !b.pinned) return -1;
+      if (!a.pinned && b.pinned) return 1;
+      
+      // 2. Sắp xếp theo ngày tạo (mới nhất trước)
+      const timeB = b.createdAt || 0;
+      const timeA = a.createdAt || 0;
+      if (timeB !== timeA) return timeB - timeA;
+      
+      // 3. Fallback theo ID nếu cùng ngày tạo
+      return b.id - a.id;
+    });
   }
 
   public getChatById(id: number): IChatHistoryItem | undefined {
@@ -46,7 +72,13 @@ class ChatService {
   public addNewChat(title: string): number {
     const truncatedTitle = title.length > 60 ? title.substring(0, 57) + "..." : title;
     const newId = this.history.length > 0 ? Math.max(...this.history.map(c => c.id)) + 1 : 1;
-    this.history.unshift({ id: newId, title: truncatedTitle, pinned: false });
+    this.history.unshift({ 
+      id: newId, 
+      title: truncatedTitle, 
+      pinned: false,
+      createdAt: Date.now()
+    });
+    this.notify();
     return newId;
   }
 
@@ -54,6 +86,7 @@ class ChatService {
     const index = this.history.findIndex(c => c.id === id);
     if (index !== -1) {
       this.history.splice(index, 1);
+      this.notify();
     }
   }
 
@@ -61,6 +94,7 @@ class ChatService {
     const index = this.history.findIndex(c => c.id === id);
     if (index !== -1) {
       this.history[index].title = newTitle;
+      this.notify();
     }
   }
 
@@ -68,11 +102,8 @@ class ChatService {
     const index = this.history.findIndex(c => c.id === id);
     if (index !== -1) {
       this.history[index].pinned = !this.history[index].pinned;
-      // Re-sort history: pinned items at the top
-      this.history.sort((a, b) => {
-        if (a.pinned === b.pinned) return 0;
-        return a.pinned ? -1 : 1;
-      });
+      // Chúng ta không cần sort() ở đây nữa vì getChatHistory() sẽ lo việc đó
+      this.notify();
     }
   }
 
@@ -80,6 +111,7 @@ class ChatService {
     const index = this.history.findIndex(c => c.id === id);
     if (index !== -1) {
       this.history[index] = { ...this.history[index], ...data };
+      this.notify();
     }
   }
 

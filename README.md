@@ -1,6 +1,6 @@
 # TELI Viettel – Digital Learning Platform
 
-TELI is a digital learning platform developed as part of the "Digital Light for Highland Areas" (_Ánh sáng số vùng cao_) project. It serves as an AI-powered teaching assistant designed to support IT education and digital skills for students in remote and mountainous regions.
+TELI is a digital learning platform developed as part of the "Ánh sáng số vùng cao" project. It serves as an AI-powered teaching assistant designed to support IT education and digital skills for students in remote and mountainous regions.
 
 The name **TELI** is a combination of:
 
@@ -30,7 +30,6 @@ The name **TELI** is a combination of:
 - **High-Fidelity AI Mascot**: Enhanced the AI mascot avatar with a larger 36px size and `crisp-edges` rendering for superior visual clarity and brand recognition.
 - **Smart Mobile Editor Experience**: The Word-style editor now transitions to a full-screen fixed overlay on mobile with a high z-index (3000), preventing menu clipping and improving focus.
 - **Responsive Interaction Polish**: Home page suggestion chips now intelligently stack vertically on small screens, preventing horizontal overflow while maintaining 100% readability.
-
 
 ---
 
